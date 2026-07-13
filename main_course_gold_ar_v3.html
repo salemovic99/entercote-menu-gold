@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ENTRECÔTE Café de Paris — اختيارات الستيك</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+    .halftone-overlay {
+        background-image: radial-gradient(#b48e56 0.5px, transparent 0.5px);
+        background-size: 3px 3px;
+    }
+    .double-rule-top  { border-top: 3px double #b48e56; }
+    .double-rule-bottom { border-bottom: 3px double #b48e56; }
+
+    /* ── White page ── */
+    .gold-page {
+        background-color: #ffffff;
+        background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .menu-ornament::before, .menu-ornament::after {
+        content: "◆";
+        font-size: 0.6rem;
+        margin: 0 1rem;
+        vertical-align: middle;
+        opacity: 0.5;
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* ── Collapsing header ── */
+    #site-header { transition: padding 0.3s ease; }
+    #header-meta-bar {
+        overflow: hidden;
+        max-height: 40px;
+        opacity: 1;
+        transition: max-height 0.35s ease, opacity 0.25s ease;
+    }
+    #header-subtitle {
+        overflow: hidden;
+        max-height: 32px;
+        opacity: 1;
+        margin-top: 0.5rem;
+        transition: max-height 0.35s ease, opacity 0.25s ease, margin 0.35s ease;
+    }
+    #header-logo {
+        transition: max-width 0.35s ease;
+    }
+    .header-scrolled { padding-top: 8px !important; }
+    .header-scrolled #header-meta-bar { max-height: 0; opacity: 0; }
+    .header-scrolled #header-subtitle { max-height: 0; opacity: 0; margin-top: 0; }
+    .header-scrolled #header-logo { max-width: 160px !important; }
+
+    /* ── Bottom tab bar safe-area ── */
+    #bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* ── Gold shimmer gradient on headings & accents ── */
+    .gold-accent {
+        background: linear-gradient(135deg, #8a6a3a 0%, #c9a46a 25%, #f0dcb0 50%, #c9a46a 75%, #8a6a3a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    /* Gradient horizontal rule */
+    .rule-gold {
+        height: 2px;
+        border: 0;
+        background: linear-gradient(90deg, transparent 0%, #b48e56 20%, #f0dcb0 50%, #b48e56 80%, transparent 100%);
+    }
+    /* Gradient price tag */
+    .price-gold {
+        background: linear-gradient(135deg, #8a6a3a 0%, #c9a46a 45%, #e6cc94 55%, #8a6a3a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    /* Signature / most-ordered badge */
+    .badge-gold {
+        border: 1px solid rgba(180, 142, 86, 0.5);
+        background: linear-gradient(135deg, rgba(240,223,192,0.35), rgba(255,255,255,0.2));
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "background": "#ffffff",
+                    "on-primary-container": "#6b6b6b",
+                    "tertiary-fixed": "#e8e5e0",
+                    "on-background": "#0a0a08",
+                    "secondary-fixed-dim": "#c9a46a",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#0a0a08",
+                    "inverse-surface": "#2a2a28",
+                    "surface-variant": "#e8e5de",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#5f5e5e",
+                    "inverse-primary": "#c8c6c5",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "surface-container-low": "#f7f6f2",
+                    "surface-dim": "#e0ddd6",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#868382",
+                    "on-secondary-fixed": "#2a1a00",
+                    "outline-variant": "#d4d0c8",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-secondary-fixed-variant": "#7a5e28",
+                    "tertiary-fixed-dim": "#cac6c4",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "surface-container-high": "#edeae3",
+                    "primary": "#b48e56",
+                    "primary-dark": "#8a6a3a",
+                    "primary-light": "#e6cc94",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#e5e2e1",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#b48e56",
+                    "surface-bright": "#ffffff",
+                    "on-secondary-container": "#ffffff",
+                    "inverse-on-surface": "#f5f2eb",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#474746",
+                    "tertiary-container": "#1c1b1a",
+                    "primary-container": "#1c1b1b",
+                    "secondary": "#b48e56",
+                    "surface-container": "#f3f0e9",
+                    "tertiary": "#000000",
+                    "on-surface-variant": "#4a4a48",
+                    "surface": "#ffffff",
+                    "outline": "#7a7870",
+                    "surface-container-highest": "#e5e2db",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#f0dfc0"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "stack-sm": "8px",
+                    "edge-margin": "32px",
+                    "column-gap": "24px",
+                    "rule-weight": "1px",
+                    "stack-md": "16px",
+                    "double-rule-gap": "4px",
+                    "stack-lg": "40px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Cairo"],
+                    "headline-lg": ["Cairo"],
+                    "body-lg": ["Cairo"],
+                    "label-caps": ["Cairo"],
+                    "headline-sm": ["Cairo"],
+                    "caption": ["Cairo"],
+                    "headline-lg-mobile": ["Cairo"],
+                    "masthead": ["Cairo"],
+                    "body-md": ["Cairo"]
+                },
+                "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "body-lg": ["20px", {"lineHeight": "34px", "fontWeight": "400"}],
+                    "label-caps": ["14px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "masthead": ["72px", {"lineHeight": "88px", "fontWeight": "900"}],
+                    "body-md": ["17px", {"lineHeight": "30px", "fontWeight": "400"}]
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="gold-page bg-background text-on-surface font-body-md selection:bg-secondary selection:text-white min-h-screen">
+
+<!-- ── AR / EN language toggle (floating) ── -->
+<a href="main_course_gradient.html"
+   class="fixed top-4 left-4 z-50 flex items-center gap-1 bg-background border border-primary/40 rounded-full px-3 py-1.5 shadow-sm font-label-caps text-[11px] uppercase text-on-surface-variant hover:text-secondary hover:border-secondary transition-colors">
+  <span>EN</span>
+  <span class="text-primary/30 mx-0.5">|</span>
+  <span class="text-secondary font-bold">AR</span>
+</a>
+
+<!-- ── Header (sticky + collapsing) ── -->
+<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center sticky top-0 z-40 bg-background/90 backdrop-blur-sm">
+
+  <!-- Meta bar: hides on scroll -->
+  <div id="header-meta-bar" class="w-full flex justify-between items-end border-b border-primary pb-2 mb-1">
+    <span class="font-label-caps text-label-caps gold-accent">CHEZ BOUBIER 1930</span>
+    <span class="font-label-caps text-label-caps gold-accent">Café de Paris</span>
+  </div>
+
+  <!-- Logo -->
+  <div class="py-3 w-full flex flex-col items-center border-b-4 border-double border-primary">
+    <img id="header-logo" src="Entrecote logo.png" alt="ENTRECÔTE Café de Paris"
+         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto transition-all duration-300"/>
+
+  </div>
+
+  <!-- Top nav -->
+  <nav class="w-full flex justify-center gap-column-gap py-3 border-primary">
+    <a class="text-secondary font-bold border-b-2 border-secondary font-label-caps text-label-caps active:scale-95 transition-all" href="#">القائمة</a>
+    <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors" href="#story">قصّتنا </a>
+  </nav>
+
+  <div class="w-full rule-gold"></div>
+
+  <!-- Category ribbon — desktop only -->
+  <div class="hidden md:flex w-full justify-center border-b-4 border-double border-primary py-2 bg-surface-container-low/60">
+    <div class="flex items-center gap-4 font-label-caps text-[13px]">
+      <a class="text-secondary font-bold" href="main_course_gold_ar_v3.html"> الستيك</a>
+      <span class="text-primary/40">|</span>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">المقبّلات</a>
+      <span class="text-primary/40">|</span>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">الأطباق الجانبية</a>
+      <span class="text-primary/40">|</span>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors" href="dessert_gold_ar_v3.html">الحلويات</a>
+      <span class="text-primary/40">|</span>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors" href="beverages_gold_ar_v3.html">المشروبات</a>
+    </div>
+  </div>
+
+</header>
+
+<!-- ── Main content ── -->
+<main class="max-w-[1000px] mx-auto px-edge-margin py-stack-lg text-center pb-28 md:pb-stack-lg">
+
+  <!-- Section Header -->
+  <div class="mb-10 md:mb-12">
+    <h2 class="gold-accent font-headline-lg text-[clamp(1.6rem,6vw,3rem)] md:text-headline-lg mb-4 menu-ornament w-full block">اختيارات الستيك</h2>
+    <div class="flex items-center justify-center gap-4 mb-8">
+      <div class="h-px flex-1 rule-gold"></div>
+      <span class="font-label-caps text-label-caps text-secondary text-center">تُقدَّم جميع اختيارات الستيك مع سلطة الشيف وبطاطسنا الطازجة مع إعادة تعبئة مجانية</span>
+      <div class="h-px flex-1 rule-gold"></div>
+    </div>
+
+    <!-- فـنّ التقديم — serving note -->
+    <div class="max-w-xl mx-auto border border-dotted border-secondary/50 rounded px-6 py-5 flex flex-col items-center bg-white/40">
+      <span class="material-symbols-outlined text-secondary text-[22px] mb-2">local_fire_department</span>
+      <h4 class="font-label-caps text-label-caps text-secondary mb-2">فـنّ التقديم</h4>
+      <p class="font-body-md text-on-surface-variant leading-relaxed text-[14px] md:text-[15px]">
+        تبدأ التجربة باختياركم لدرجة النضج المثالية، ويُقدَّم الطبق فوق شعلةٍ هادئة، لتحافظ صلصة كافيه دو باريس الأصلية على دفئها حتى آخر لقمة، في تقليدٍ متوارث منذ عام 1930 ولأفضل تجربة تذوّق، ننصحكم بالاستمتاع بها بدءًا من منتصف الطبق.
+      </p>
+    </div>
+  </div>
+
+  <!-- Menu Items -->
+  <div class="space-y-10 md:space-y-16 max-w-2xl mx-auto">
+
+    <!-- لي سوبرِيم -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="font-headline-sm text-xl md:text-2xl mb-1">لي سوبرِيم</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 575</span>
+        <span class="badge-gold mt-2 rounded-full px-3 py-0.5 font-label-caps text-[11px] text-primary-dark">الأكثر طلبًا</span>
+      </div>
+      <p class="font-body-md text-secondary leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين واغيو أسترالي معتمد · درجة ترخيم اللحم 9 · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        اعلى درجات الترخيم، تمنح اللحم نكهةً غنية وقوامًا فائق النعومة.
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-secondary/40 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">local_fire_department</span>1000 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">directions_walk</span>259 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-error/80">
+          <span class="material-symbols-outlined text-[14px]">warning</span>
+          <span>يحتوي على: ألبان · خردل · أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لي ماربريه -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="font-headline-sm text-xl md:text-2xl mb-1">لي ماربريه</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 445</span>
+      </div>
+      <p class="font-body-md text-secondary leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين من الواغيو الأسترالي · درجة الترخيم 7 · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        ترخيم يمنح اللحم نكهةً متوازنة وطراوةً استثنائية
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-secondary/40 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">local_fire_department</span>790 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">directions_walk</span>205 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-error/80">
+          <span class="material-symbols-outlined text-[14px]">warning</span>
+          <span>يحتوي على: ألبان · خردل · أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لي نوار -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="font-headline-sm text-xl md:text-2xl mb-1">لي نوار</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 390</span>
+      </div>
+      <p class="font-body-md text-secondary leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        بلاك أنجوس · تندرلوين مُغذّى على الحبوب لمدة 200 يوم · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        يتميّز بقوامٍ ناعم ونكهةٍ غنية، مع لمسةٍ نهائية راقية
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-secondary/40 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">local_fire_department</span>880 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">directions_walk</span>228 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-error/80">
+          <span class="material-symbols-outlined text-[14px]">warning</span>
+          <span>يحتوي على: ألبان · خردل · أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لي فيليه -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="font-headline-sm text-xl md:text-2xl mb-1">لي فيليه</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 295</span>
+      </div>
+      <p class="font-body-md text-secondary leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        تندرلوين أسترالي · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        قطعة رقيقة القوام، تتميز بطراوةٍ استثنائية مع نسبة دهون منخفضة
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-secondary/40 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">local_fire_department</span>700 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">directions_walk</span>181 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-error/80">
+          <span class="material-symbols-outlined text-[14px]">warning</span>
+          <span>يحتوي على: ألبان · خردل · أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لأنجوس -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="font-headline-sm text-xl md:text-2xl mb-1">لأنجوس</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 235</span>
+        <span class="badge-gold mt-2 rounded-full px-3 py-0.5 font-label-caps text-[11px] text-primary-dark">الأكثر طلبًا</span>
+      </div>
+      <p class="font-body-md text-secondary leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين بلاك أنجوس · مُغذّى على الحبوب لمدة 180 يومًا · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        نكهة لحم مميزة، تمنح كل لقمة مذاقًا غنياً لا يُنسى.
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-secondary/40 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">local_fire_department</span>580 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">directions_walk</span>142 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-error/80">
+          <span class="material-symbols-outlined text-[14px]">warning</span>
+          <span>يحتوي على: ألبان · خردل · أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ذا كلاسيك -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="font-headline-sm text-xl md:text-2xl mb-1">ذا كلاسيك</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 199</span>
+      </div>
+      <p class="font-body-md text-secondary leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين أسترالي · 200 جم · جنيف، 1930
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        القطعة التي بدأت معها حكاية كافيه دو باريس، وما زالت تُقدَّم اليوم بالأسلوب ذاته منذ ما يقارب قرنًا
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-secondary/40 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">local_fire_department</span>550 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-secondary">directions_walk</span>142 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-error/80">
+          <span class="material-symbols-outlined text-[14px]">warning</span>
+          <span>يحتوي على: ألبان · خردل · أسماك</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+
+  <!-- يشمل كل طبق رئيسي -->
+  <div class="mt-16 md:mt-24 border-y-4 border-double border-primary py-10 md:py-12 px-6 md:px-8 max-w-3xl mx-auto bg-white/40">
+    <h3 class="gold-accent font-headline-sm text-xl md:text-2xl mb-6">يشمل كل طبق رئيسي</h3>
+    <div class="grid gap-6 md:grid-cols-2 text-right">
+      <div>
+        <h4 class="font-label-caps text-label-caps text-secondary mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">local_dining</span>
+          بطاطس كافيه دو باريس
+        </h4>
+        <p class="font-body-md text-on-surface-variant leading-relaxed text-[15px] md:text-body-md">
+          بطاطس طازجة مختارة بعناية، تُحضَّر يوميًا لتقدم بقوامها المثالي.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-label-caps text-label-caps text-secondary mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">eco</span>
+          سلطة الشيف
+        </h4>
+        <p class="font-body-md text-on-surface-variant leading-relaxed text-[15px] md:text-body-md">
+          خس هولندي طازج، يُقدَّم مع صلصة السلطة الخاصة بكافيه دو باريس التي تجمع بين خردل ديجون والأعشاب.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- سـر جنيف — heritage feature -->
+  <div id="story" class="mt-16 md:mt-24 max-w-3xl mx-auto text-center scroll-mt-40">
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="h-px w-10 rule-gold"></div>
+      <span class="material-symbols-outlined text-secondary text-[20px]">workspace_premium</span>
+      <div class="h-px w-10 rule-gold"></div>
+    </div>
+    <h3 class="gold-accent font-headline-md text-2xl md:text-headline-md mb-2">سـر جنيف</h3>
+    <span class="font-label-caps text-label-caps text-secondary block mb-6">CHEZ BOUBIER 1930</span>
+    <div class="space-y-4 text-right">
+      <p class="font-body-md text-on-surface-variant leading-loose text-[15px] md:text-body-md">
+        ابتُكرت صلصة كافيه دو باريس في مدينة جنيف عام 1930 على يد الشيف بوبييه، لتصبح سرًا محفوظًا لا يعرفه سوى القليل. وفي عام 1942، انتقلت الوصفة إلى ابنته وزوجها، لتبدأ رحلة إرثٍ تناقلته الأجيال، محافظين على أصالتها دون تغيير.
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-loose text-[15px] md:text-body-md">
+        واليوم، يواصل السيد فرانسوا فويّو إعداد صلصة كافيه دو باريس الأصلية في جنيف، باستخدام مكونات مختارة بعناية من مزرعته الخاصة، قبل أن تبدأ رحلتها إلى مائدتكم.
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-loose text-[15px] md:text-body-md">
+        ما نقدّمه ليس مجرد وصفة، بل إرثٌ يمتد لأكثر من خمسةٍ وتسعين عامًا، حُفظ عبر الأجيال ليصل إليكم اليوم كما بدأ في جنيف.
+      </p>
+    </div>
+   
+  </div>
+
+ 
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="w-full bg-surface-container-low/70 border-t-4 border-double border-primary mt-stack-lg relative overflow-hidden mb-16 md:mb-0">
+  <div class="absolute inset-0 halftone-overlay pointer-events-none opacity-40"></div>
+  <div class="relative z-10 max-w-full px-edge-margin py-stack-lg flex flex-col items-center text-center">
+    <span class="font-label-caps text-label-caps gold-accent mb-2">CHEZ BOUBIER 1930</span>
+    <img src="Entrecote logo.png" alt="ENTRECÔTE Café de Paris" class="w-auto max-w-[160px] h-auto mx-auto"/>
+    <div class="w-16 rule-gold my-4"></div>
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+      طبقٌ واحد. إرث واحدة. سرٌ محفوظ منذ خمسةٍ وتسعين عامًا
+    </p>
+    <div class="mt-stack-lg w-full max-w-3xl flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-label-caps text-[12px] text-primary">
+      <span>برج الفيصلية</span>
+      <span class="text-secondary">◆</span>
+      <span>لومير سنتر</span>
+      <span class="text-secondary">◆</span>
+      <span>ليسن فالي</span>
+      <span class="text-secondary">◆</span>
+      <span>العلا</span>
+    </div>
+    <div class="mt-stack-md pt-stack-md w-full max-w-3xl border-t border-primary/30 font-caption text-[12px] text-on-surface-variant leading-relaxed">
+      <p>جميع الأسعار تشمل ضريبة القيمة المضافة 15 ٪، حرصًا على سلامتكم نرجو إبلاغ فريق الخدمة بأي حساسية غذائية خاصة قبل الطلب.</p>
+    </div>
+  </div>
+  <div class="w-full h-6 halftone-overlay border-t border-primary/20 opacity-40"></div>
+</footer>
+
+<!-- ── Bottom tab bar (mobile only) ── -->
+<nav id="bottom-nav"
+     class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden bg-background/95 backdrop-blur-sm border-t-2 border-double border-primary">
+  <a href="main_course_gold_ar_v3.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-secondary">
+    <span class="material-symbols-outlined text-[22px]" style="font-variation-settings:'FILL' 1,'wght' 400">restaurant</span>
+    <span class="font-label-caps text-[10px] font-bold">الستيك</span>
+  </a>
+  <a href="#"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-on-surface-variant hover:text-secondary transition-colors">
+    <span class="material-symbols-outlined text-[22px]">lunch_dining</span>
+    <span class="font-label-caps text-[10px]">المقبّلات</span>
+  </a>
+  <a href="#"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-on-surface-variant hover:text-secondary transition-colors">
+    <span class="material-symbols-outlined text-[22px]">rice_bowl</span>
+    <span class="font-label-caps text-[10px]">الجانبية</span>
+  </a>
+  <a href="dessert_gold_ar_v3.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-on-surface-variant hover:text-secondary transition-colors">
+    <span class="material-symbols-outlined text-[22px]">cake</span>
+    <span class="font-label-caps text-[10px]">الحلويات</span>
+  </a>
+  <a href="beverages_gold_ar_v3.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-on-surface-variant hover:text-secondary transition-colors">
+    <span class="material-symbols-outlined text-[22px]">local_cafe</span>
+    <span class="font-label-caps text-[10px]">المشروبات</span>
+  </a>
+</nav>
+
+<script>
+  // Collapsing header on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 72) {
+      header.classList.add('header-scrolled');
+    } else {
+      header.classList.remove('header-scrolled');
+    }
+  }, { passive: true });
+
+  // Touch feedback
+  document.querySelectorAll('button, a').forEach(el => {
+    el.addEventListener('mousedown', () => el.classList.add('scale-95'));
+    el.addEventListener('mouseup',   () => el.classList.remove('scale-95'));
+    el.addEventListener('mouseleave',() => el.classList.remove('scale-95'));
+  });
+</script>
+</body></html>
