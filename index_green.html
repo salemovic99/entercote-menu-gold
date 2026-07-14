@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ENTRECÔTE Café de Paris —  الستيك</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/lucide@1.24.0/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        /* ---- PRIMARY PALETTE ---------------------------------------- */
+        /* The two hero colors. Green is dominant; gold is the accent. */
+        --green: #00594f;          /* Brunswick Green — PANTONE 129-16 C */
+        --gold:  #bb9d5a;          /* Satin Gold      — PANTONE 12-5 C   */
+        --white: #ffffff;
+        --black: #000000;          /* must stay PURE black, never mixed/overprinted */
+
+        /* ---- GREEN SCALE -------------------------------------------- */
+        --green-900: #001614;
+        --green-800: #002d28;
+        --green-700: #00413a;
+        --green-500: #337a72;
+        --green-400: #669b95;
+        --green-300: #99bdb9;
+        --green-200: #ccdedc;
+        --green-100: #e6efee;
+
+        /* ---- GOLD SCALE --------------------------------------------- */
+        --gold-900: #2f2717;
+        --gold-800: #5e4f2d;
+        --gold-700: #8c7644;
+        --gold-400: #c9b07b;
+        --gold-300: #d6c49c;
+        --gold-200: #e4d8bd;
+        --gold-100: #f1ebde;       /* warm "cream" ground — used as off-white */
+    }
+
+    /* ── Cream page ground ── */
+    .cream-page {
+        background-color: var(--gold-100);
+        background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    }
+
+    .halftone-overlay {
+        background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+        background-size: 3px 3px;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .menu-ornament::before, .menu-ornament::after {
+        content: "◆";
+        font-size: 0.6rem;
+        margin: 0 1rem;
+        vertical-align: middle;
+        color: var(--gold);
+        opacity: 0.7;
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* ── Bottom tab bar safe-area ── */
+    #bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* ── Headings: solid Brunswick green (dominant) ── */
+    .green-accent { color: var(--green); }
+
+    /* ── Gold shimmer gradient — reserved for the accent moments ── */
+    .gold-accent {
+        background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-400) 25%, var(--gold) 50%, var(--gold-400) 75%, var(--gold-800) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    /* Gradient horizontal rule */
+    .rule-gold {
+        height: 2px;
+        border: 0;
+        background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold-200) 50%, var(--gold) 80%, transparent 100%);
+    }
+    /* Price tag */
+    .price-gold {
+        background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-700) 45%, var(--gold) 55%, var(--gold-800) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    /* Signature / most-ordered badge — gold on green */
+    .badge-green {
+        border: 1px solid var(--gold);
+        background: var(--green);
+        color: var(--gold-200);
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    /* Hero */
+                    "green": "#00594f",
+                    "green-900": "#001614",
+                    "green-800": "#002d28",
+                    "green-700": "#00413a",
+                    "green-500": "#337a72",
+                    "green-400": "#669b95",
+                    "green-300": "#99bdb9",
+                    "green-200": "#ccdedc",
+                    "green-100": "#e6efee",
+                    "gold": "#bb9d5a",
+                    "gold-900": "#2f2717",
+                    "gold-800": "#5e4f2d",
+                    "gold-700": "#8c7644",
+                    "gold-400": "#c9b07b",
+                    "gold-300": "#d6c49c",
+                    "gold-200": "#e4d8bd",
+                    "gold-100": "#f1ebde",
+
+                    /* Semantic roles — green dominant, gold accent */
+                    "primary": "#00594f",
+                    "secondary": "#bb9d5a",
+                    "background": "#f1ebde",
+                    "surface": "#ffffff",
+                    "surface-container-low": "#e6efee",
+                    "on-background": "#001614",
+                    "on-surface": "#001614",
+                    "on-surface-variant": "#00413a",
+                    "on-primary": "#ffffff",
+                    "outline": "#669b95",
+                    "outline-variant": "#ccdedc"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "stack-sm": "8px",
+                    "edge-margin": "32px",
+                    "column-gap": "24px",
+                    "rule-weight": "1px",
+                    "stack-md": "16px",
+                    "double-rule-gap": "4px",
+                    "stack-lg": "40px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Cairo"],
+                    "headline-lg": ["Cairo"],
+                    "body-lg": ["Cairo"],
+                    "label-caps": ["Cairo"],
+                    "headline-sm": ["Cairo"],
+                    "caption": ["Cairo"],
+                    "headline-lg-mobile": ["Cairo"],
+                    "masthead": ["Cairo"],
+                    "body-md": ["Cairo"]
+                },
+                "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "body-lg": ["20px", {"lineHeight": "34px", "fontWeight": "400"}],
+                    "label-caps": ["14px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "masthead": ["72px", {"lineHeight": "88px", "fontWeight": "900"}],
+                    "body-md": ["17px", {"lineHeight": "30px", "fontWeight": "400"}]
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="cream-page bg-background text-on-surface font-body-md selection:bg-green selection:text-white min-h-screen">
+
+<!-- ── AR / EN language toggle (floating) ── -->
+<a href="main_course_gradient.html"
+   class="fixed top-4 left-4 z-50 flex items-center gap-1 bg-surface border border-green/30 rounded-full px-3 py-1.5 shadow-sm font-label-caps text-[11px] uppercase text-on-surface-variant hover:text-green hover:border-green transition-colors">
+  <span>EN</span>
+  <span class="text-green/30 mx-0.5">|</span>
+  <span class="text-green font-bold">AR</span>
+</a>
+
+<!-- ── Header ── -->
+<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center bg-background">
+
+  <!-- Logo -->
+  <div class="py-3 w-full flex flex-col items-center border-b-4 border-double border-green">
+    <img id="header-logo" src="English version.svg" alt="ENTRECÔTE Café de Paris"
+         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto"/>
+  </div>
+
+  <!-- Top nav -->
+  <nav class="w-full flex justify-center gap-column-gap py-3">
+    <a class="text-green font-bold border-b-2 border-gold font-label-caps text-label-caps active:scale-95 transition-all" href="#">القائمة</a>
+  </nav>
+
+  <div class="w-full rule-gold"></div>
+
+  <!-- Category ribbon — desktop only -->
+  <div class="hidden md:flex w-full justify-center border-b-4 border-double border-green py-2 bg-green-100/60">
+    <div class="flex items-center gap-4 font-label-caps text-[13px]">
+      <a class="text-green font-bold border-b-2 border-gold" href="index_green.html"> الستيك</a>
+      <span class="text-gold">|</span>
+      <a class="text-on-surface-variant hover:text-green transition-colors" href="dessert_gold_ar_v3.html">الحلويات</a>
+      <span class="text-gold">|</span>
+      <a class="text-on-surface-variant hover:text-green transition-colors" href="beverages_gold_ar_v3.html">المشروبات</a>
+    </div>
+  </div>
+
+</header>
+
+<!-- ── Main content ── -->
+<main class="max-w-[1000px] mx-auto px-edge-margin py-stack-lg text-center pb-28 md:pb-stack-lg">
+
+  <!-- Section Header -->
+  <div class="mb-10 md:mb-12">
+    <h2 class="green-accent font-headline-lg text-[clamp(1.6rem,6vw,3rem)] md:text-headline-lg mb-4 menu-ornament w-full block">اختيارات الستيك</h2>
+  </div>
+
+  <!-- Menu Items -->
+  <div class="space-y-10 md:space-y-16 max-w-2xl mx-auto">
+
+    <!-- لي سوبرِيم -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="green-accent font-headline-sm text-xl md:text-2xl mb-1">لي سوبرِيم</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 575</span>
+        <span class="badge-green mt-2 rounded-full px-3 py-0.5 font-label-caps text-[11px]">الأكثر طلبًا</span>
+      </div>
+      <p class="font-body-md text-gold-700 leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين واغيو أسترالي معتمد · درجة ترخيم اللحم 9 · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        اعلى درجات الترخيم، تمنح اللحم نكهةً غنية وقوامًا فائق النعومة.
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-gold/60 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>1000 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>259 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-black/80">
+          <span>يحتوي على: </span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>ألبان</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="droplet" class="w-3.5 h-3.5"></i>خردل</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="fish" class="w-3.5 h-3.5"></i>أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لي ماربريه -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="green-accent font-headline-sm text-xl md:text-2xl mb-1">لي ماربريه</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 445</span>
+      </div>
+      <p class="font-body-md text-gold-700 leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين من الواغيو الأسترالي · درجة الترخيم 7 · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        ترخيم يمنح اللحم نكهةً متوازنة وطراوةً استثنائية
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-gold/60 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>790 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>205 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-black/80">
+          <span>يحتوي على: </span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>ألبان</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="droplet" class="w-3.5 h-3.5"></i>خردل</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="fish" class="w-3.5 h-3.5"></i>أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لي نوار -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="green-accent font-headline-sm text-xl md:text-2xl mb-1">لي نوار</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 390</span>
+      </div>
+      <p class="font-body-md text-gold-700 leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        بلاك أنجوس · تندرلوين مُغذّى على الحبوب لمدة 200 يوم · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        يتميّز بقوامٍ ناعم ونكهةٍ غنية، مع لمسةٍ نهائية راقية
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-gold/60 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>880 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>228 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-black/80">
+          <span>يحتوي على: </span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>ألبان</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="droplet" class="w-3.5 h-3.5"></i>خردل</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="fish" class="w-3.5 h-3.5"></i>أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لي فيليه -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="green-accent font-headline-sm text-xl md:text-2xl mb-1">لي فيليه</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 295</span>
+      </div>
+      <p class="font-body-md text-gold-700 leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        تندرلوين أسترالي · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        قطعة رقيقة القوام، تتميز بطراوةٍ استثنائية مع نسبة دهون منخفضة
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-gold/60 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>700 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>181 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-black/80">
+          <span>يحتوي على: </span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>ألبان</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="droplet" class="w-3.5 h-3.5"></i>خردل</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="fish" class="w-3.5 h-3.5"></i>أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- لأنجوس -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="green-accent font-headline-sm text-xl md:text-2xl mb-1">لأنجوس</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 235</span>
+        <span class="badge-green mt-2 rounded-full px-3 py-0.5 font-label-caps text-[11px]">الأكثر طلبًا</span>
+      </div>
+      <p class="font-body-md text-gold-700 leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين بلاك أنجوس · مُغذّى على الحبوب لمدة 180 يومًا · 200 جم
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        نكهة لحم مميزة، تمنح كل لقمة مذاقًا غنياً لا يُنسى.
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-gold/60 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>580 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>142 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-black/80">
+          <span>يحتوي على: </span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>ألبان</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="droplet" class="w-3.5 h-3.5"></i>خردل</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="fish" class="w-3.5 h-3.5"></i>أسماك</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ذا كلاسيك -->
+    <article class="group">
+      <div class="flex flex-col items-center mb-2">
+        <h3 class="green-accent font-headline-sm text-xl md:text-2xl mb-1">ذا كلاسيك</h3>
+        <span class="price-gold font-label-caps font-bold text-xl md:text-lg">SAR 199</span>
+      </div>
+      <p class="font-body-md text-gold-700 leading-relaxed mx-auto max-w-lg mb-1 text-[14px] md:text-[15px]">
+        ستريبلوين أسترالي · 200 جم · جنيف، 1930
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-relaxed mx-auto max-w-lg mb-4 text-[15px] md:text-body-md">
+        القطعة التي بدأت معها حكاية كافيه دو باريس، وما زالت تُقدَّم اليوم بالأسلوب ذاته منذ ما يقارب قرنًا
+      </p>
+      <div class="flex flex-col items-center gap-2 w-fit mx-auto border-t border-dotted border-gold/60 pt-4">
+        <div class="flex justify-center items-center gap-4 md:gap-6 text-[12px] font-label-caps text-on-surface-variant">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>550 سعرة حرارية</span>
+          <span class="opacity-30">/</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>142 دقيقة لحرق السعرات</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[11px] font-label-caps text-black/80">
+          <span>يحتوي على: </span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>ألبان</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="droplet" class="w-3.5 h-3.5"></i>خردل</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="fish" class="w-3.5 h-3.5"></i>أسماك</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+
+  <!-- يشمل كل طبق رئيسي — green panel, gold detail -->
+  <div class="mt-16 md:mt-24 border-y-4 border-double border-gold py-10 md:py-12 px-6 md:px-8 max-w-3xl mx-auto bg-green text-white">
+    <h3 class="gold-accent font-headline-sm text-xl md:text-2xl mb-6">يشمل كل طبق رئيسي</h3>
+    <div class="grid gap-6 md:grid-cols-2 text-right">
+      <div>
+        <h4 class="font-label-caps text-label-caps text-gold-300 mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">local_dining</span>
+          بطاطس كافيه دو باريس
+        </h4>
+        <p class="font-body-md text-green-200 leading-relaxed text-[15px] md:text-body-md">
+          بطاطس طازجة مختارة بعناية، تُحضَّر يوميًا لتقدم بقوامها المثالي.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-label-caps text-label-caps text-gold-300 mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">eco</span>
+          سلطة الشيف
+        </h4>
+        <p class="font-body-md text-green-200 leading-relaxed text-[15px] md:text-body-md">
+          خس هولندي طازج، يُقدَّم مع صلصة السلطة الخاصة بكافيه دو باريس التي تجمع بين خردل ديجون والأعشاب.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- سـر جنيف — heritage feature -->
+  <div id="story" class="mt-16 md:mt-24 max-w-3xl mx-auto text-center scroll-mt-40">
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="h-px w-10 rule-gold"></div>
+      <span class="material-symbols-outlined text-gold text-[20px]">workspace_premium</span>
+      <div class="h-px w-10 rule-gold"></div>
+    </div>
+    <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-2">سـر جنيف</h3>
+    <span class="font-label-caps text-label-caps text-gold-700 block mb-6">CHEZ BOUBIER 1930</span>
+    <div class="space-y-4 text-right">
+      <p class="font-body-md text-on-surface-variant leading-loose text-[15px] md:text-body-md">
+        ابتُكرت صلصة كافيه دو باريس في مدينة جنيف عام 1930 على يد الشيف بوبييه، لتصبح سرًا محفوظًا لا يعرفه سوى القليل. وفي عام 1942، انتقلت الوصفة إلى ابنته وزوجها، لتبدأ رحلة إرثٍ تناقلته الأجيال، محافظين على أصالتها دون تغيير.
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-loose text-[15px] md:text-body-md">
+        واليوم، يواصل السيد فرانسوا فويّو إعداد صلصة كافيه دو باريس الأصلية في جنيف، باستخدام مكونات مختارة بعناية من مزرعته الخاصة، قبل أن تبدأ رحلتها إلى مائدتكم.
+      </p>
+      <p class="font-body-md text-on-surface-variant leading-loose text-[15px] md:text-body-md">
+        ما نقدّمه ليس مجرد وصفة، بل إرثٌ يمتد لأكثر من خمسةٍ وتسعين عامًا، حُفظ عبر الأجيال ليصل إليكم اليوم كما بدأ في جنيف.
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── Footer — green ground, gold accents ── -->
+<footer class="w-full bg-green text-white border-t-4 border-double border-gold mt-stack-lg relative overflow-hidden mb-16 md:mb-0">
+  <div class="absolute inset-0 halftone-overlay pointer-events-none opacity-20"></div>
+  <div class="relative z-10 max-w-full px-edge-margin py-stack-lg flex flex-col items-center text-center">
+    <span class="font-label-caps text-label-caps gold-accent mb-2">CHEZ BOUBIER 1930</span>
+    <img src="Entrecote logo.png" alt="ENTRECÔTE Café de Paris" class="w-auto max-w-[160px] h-auto mx-auto"/>
+    <div class="w-16 rule-gold my-4"></div>
+    <p class="font-body-md text-body-md text-green-200 max-w-md">
+      طبقٌ واحد. إرث واحدة. سرٌ محفوظ منذ خمسةٍ وتسعين عامًا
+    </p>
+    <div class="mt-stack-lg w-full max-w-3xl flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-label-caps text-[12px] text-gold-200">
+      <span>برج الفيصلية</span>
+      <span class="text-gold">◆</span>
+      <span>لومير سنتر</span>
+      <span class="text-gold">◆</span>
+      <span>ليسن فالي</span>
+      <span class="text-gold">◆</span>
+      <span>العلا</span>
+    </div>
+    <div class="mt-stack-md pt-stack-md w-full max-w-3xl border-t border-gold/40 font-caption text-[12px] text-green-200 leading-relaxed">
+      <p>جميع الأسعار تشمل ضريبة القيمة المضافة 15 ٪، حرصًا على سلامتكم نرجو إبلاغ فريق الخدمة بأي حساسية غذائية خاصة قبل الطلب.</p>
+    </div>
+  </div>
+  <div class="w-full h-6 halftone-overlay border-t border-gold/30 opacity-30"></div>
+</footer>
+
+<!-- ── Bottom tab bar (mobile only) ── -->
+<nav id="bottom-nav"
+     class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden bg-green border-t-2 border-double border-gold">
+  <a href="index_green.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-gold">
+    <span class="material-symbols-outlined text-[22px]" style="font-variation-settings:'FILL' 1,'wght' 400">restaurant</span>
+    <span class="font-label-caps text-[10px] font-bold">الستيك</span>
+  </a>
+
+  <a href="dessert_gold_ar_v3.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
+    <span class="material-symbols-outlined text-[22px]">cake</span>
+    <span class="font-label-caps text-[10px]">الحلويات</span>
+  </a>
+  <a href="beverages_gold_ar_v3.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
+    <span class="material-symbols-outlined text-[22px]">local_cafe</span>
+    <span class="font-label-caps text-[10px]">المشروبات</span>
+  </a>
+</nav>
+
+<script>
+  // Lucide icons
+  lucide.createIcons();
+
+  // Touch feedback
+  document.querySelectorAll('button, a').forEach(el => {
+    el.addEventListener('mousedown', () => el.classList.add('scale-95'));
+    el.addEventListener('mouseup',   () => el.classList.remove('scale-95'));
+    el.addEventListener('mouseleave',() => el.classList.remove('scale-95'));
+  });
+</script>
+</body></html>
