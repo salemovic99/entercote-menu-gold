@@ -34,29 +34,6 @@
         font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
     }
 
-    /* ── Collapsing header ── */
-    #site-header { transition: padding 0.3s ease; }
-    #header-meta-bar {
-        overflow: hidden;
-        max-height: 40px;
-        opacity: 1;
-        transition: max-height 0.35s ease, opacity 0.25s ease;
-    }
-    #header-subtitle {
-        overflow: hidden;
-        max-height: 32px;
-        opacity: 1;
-        margin-top: 0.5rem;
-        transition: max-height 0.35s ease, opacity 0.25s ease, margin 0.35s ease;
-    }
-    #header-logo {
-        transition: max-width 0.35s ease;
-    }
-    .header-scrolled { padding-top: 8px !important; }
-    .header-scrolled #header-meta-bar { max-height: 0; opacity: 0; }
-    .header-scrolled #header-subtitle { max-height: 0; opacity: 0; margin-top: 0; }
-    .header-scrolled #header-logo { max-width: 160px !important; }
-
     /* ── Bottom tab bar safe-area ── */
     #bottom-nav {
         padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -199,13 +176,13 @@
 </a>
 
 <!-- ── Header (sticky + collapsing) ── -->
-<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center sticky top-0 z-40 bg-background/90 backdrop-blur-sm">
+<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center bg-background">
 
 
   <!-- Logo -->
   <div class="py-3 w-full flex flex-col items-center border-b-4 border-double border-primary">
     <img id="header-logo" src="English version.svg" alt="ENTRECÔTE Café de Paris"
-         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto transition-all duration-300"/>
+         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto"/>
 
   </div>
 
@@ -539,16 +516,6 @@
 </nav>
 
 <script>
-  // Collapsing header on scroll
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 72) {
-      header.classList.add('header-scrolled');
-    } else {
-      header.classList.remove('header-scrolled');
-    }
-  }, { passive: true });
-
   // Lucide icons
   lucide.createIcons();
 
