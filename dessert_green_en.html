@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Desserts — ENTRECÔTE Café de Paris</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/lucide@1.24.0/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        /* ---- PRIMARY PALETTE ---------------------------------------- */
+        /* The two hero colors. Green is dominant; gold is the accent. */
+        --green: #00594f;          /* Brunswick Green — PANTONE 129-16 C */
+        --gold:  #bb9d5a;          /* Satin Gold      — PANTONE 12-5 C   */
+        --white: #ffffff;
+        --black: #000000;          /* must stay PURE black, never mixed/overprinted */
+
+        /* ---- GREEN SCALE -------------------------------------------- */
+        --green-900: #001614;
+        --green-800: #002d28;
+        --green-700: #00413a;
+        --green-500: #337a72;
+        --green-400: #669b95;
+        --green-300: #99bdb9;
+        --green-200: #ccdedc;
+        --green-100: #e6efee;
+
+        /* ---- GOLD SCALE --------------------------------------------- */
+        --gold-900: #2f2717;
+        --gold-800: #5e4f2d;
+        --gold-700: #8c7644;
+        --gold-400: #c9b07b;
+        --gold-300: #d6c49c;
+        --gold-200: #e4d8bd;
+        --gold-100: #f1ebde;       /* warm "cream" ground — used as off-white */
+    }
+
+    /* ── White page ground ── */
+    .white-page {
+        background-color: var(--white);
+        background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    }
+
+    .halftone-overlay {
+        background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+        background-size: 3px 3px;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    /* ── Bottom tab bar safe-area ── */
+    #bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* ── Headings: solid Brunswick green (dominant) ── */
+    .green-accent { color: var(--green); }
+
+    /* ── Gold shimmer gradient — reserved for the accent moments ── */
+    .gold-accent {
+        background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-400) 25%, var(--gold) 50%, var(--gold-400) 75%, var(--gold-800) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    /* Gradient horizontal rule */
+    .rule-gold {
+        height: 2px;
+        border: 0;
+        background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold-200) 50%, var(--gold) 80%, transparent 100%);
+    }
+    /* Price tag */
+    .price-gold {
+        background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-700) 45%, var(--gold) 55%, var(--gold-800) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    /* Hero */
+                    "green": "#00594f",
+                    "green-900": "#001614",
+                    "green-800": "#002d28",
+                    "green-700": "#00413a",
+                    "green-500": "#337a72",
+                    "green-400": "#669b95",
+                    "green-300": "#99bdb9",
+                    "green-200": "#ccdedc",
+                    "green-100": "#e6efee",
+                    "gold": "#bb9d5a",
+                    "gold-900": "#2f2717",
+                    "gold-800": "#5e4f2d",
+                    "gold-700": "#8c7644",
+                    "gold-400": "#c9b07b",
+                    "gold-300": "#d6c49c",
+                    "gold-200": "#e4d8bd",
+                    "gold-100": "#f1ebde",
+
+                    /* Semantic roles — green dominant, gold accent */
+                    "primary": "#00594f",
+                    "secondary": "#bb9d5a",
+                    "background": "#ffffff",
+                    "surface": "#ffffff",
+                    "surface-container-low": "#e6efee",
+                    "on-background": "#001614",
+                    "on-surface": "#001614",
+                    "on-surface-variant": "#00413a",
+                    "on-primary": "#ffffff",
+                    "outline": "#669b95",
+                    "outline-variant": "#ccdedc"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "stack-sm": "8px",
+                    "edge-margin": "32px",
+                    "column-gap": "24px",
+                    "rule-weight": "1px",
+                    "stack-md": "16px",
+                    "double-rule-gap": "4px",
+                    "stack-lg": "40px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Cairo"],
+                    "headline-lg": ["Cairo"],
+                    "body-lg": ["Cairo"],
+                    "label-caps": ["Cairo"],
+                    "headline-sm": ["Cairo"],
+                    "caption": ["Cairo"],
+                    "headline-lg-mobile": ["Cairo"],
+                    "masthead": ["Cairo"],
+                    "body-md": ["Cairo"],
+                    "latin-display": ["\"Playfair Display\""]
+                },
+                "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "body-lg": ["20px", {"lineHeight": "34px", "fontWeight": "400"}],
+                    "label-caps": ["14px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "masthead": ["72px", {"lineHeight": "88px", "fontWeight": "900"}],
+                    "body-md": ["17px", {"lineHeight": "30px", "fontWeight": "400"}]
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="white-page bg-background text-on-surface font-body-md selection:bg-green selection:text-white min-h-screen">
+
+<!-- ── Language switch (floating) — the label names the destination, not the current state ── -->
+<a href="dessert_green.html" lang="ar" dir="rtl" hreflang="ar"
+   aria-label="التبديل إلى العربية"
+   class="fixed top-4 right-4 z-50 inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full
+          bg-white text-green border border-gold
+          font-label-caps text-[13px] tracking-wide
+          hover:bg-gold-100 active:scale-95 transition-all">
+  <i data-lucide="globe" class="w-4 h-4 text-gold"></i>
+  <span>العربية</span>
+</a>
+
+<!-- ── Header ── -->
+<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center bg-background">
+
+  <!-- Logo -->
+  <div class="py-3 w-full flex flex-col items-center border-b-4 border-double border-green">
+    <img id="header-logo" src="English version.svg" alt="ENTRECÔTE Café de Paris"
+         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto"/>
+  </div>
+
+  <!-- Top nav -->
+  <nav class="w-full flex justify-center gap-column-gap py-3">
+    <a class="text-green font-bold border-b-2 border-gold font-label-caps text-label-caps active:scale-95 transition-all" href="#">THE MENU</a>
+  </nav>
+
+  <div class="w-full rule-gold"></div>
+
+  <!-- Category ribbon — desktop only -->
+  <div class="hidden md:flex w-full justify-center border-b-4 border-double border-black py-2 bg-white">
+    <div class="flex items-center gap-4 font-label-caps text-[13px]">
+      <a class="text-on-surface-variant hover:text-green transition-colors" href="main_green_en.html">Steaks</a>
+      <span class="text-gold">|</span>
+      <a class="text-green font-bold border-b-2 border-gold" href="dessert_green_en.html">Desserts</a>
+      <span class="text-gold">|</span>
+      <a class="text-on-surface-variant hover:text-green transition-colors" href="#">Beverages</a>
+    </div>
+  </div>
+
+</header>
+
+<!-- ── Main content ── -->
+<main class="max-w-3xl mx-auto px-edge-margin py-stack-lg pb-28 md:pb-stack-lg">
+
+  <!-- Section Header -->
+  <div class="text-center mb-12 md:mb-16">
+    <div class="inline-block border-y-2 border-green py-2 px-6 md:px-8">
+      <h2 class="green-accent font-headline-lg text-2xl md:text-headline-lg">DESSERTS — LES DOUCEURS</h2>
+    </div>
+    <p class="font-body-md text-body-md mt-4 text-on-surface-variant">A collection of classic Parisian desserts, made with precision and care.</p>
+  </div>
+
+  <!-- Menu List -->
+  <div class="space-y-10 md:space-y-12">
+
+    <!-- Profiteroles -->
+    <div class="group text-center">
+      <div class="flex flex-col items-center">
+        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Profiteroles</h3>
+        <span class="price-gold font-label-caps font-bold text-xl mb-3">35.00 SAR</span>
+        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
+          Hand-crafted choux pastry filled with vanilla bean gelato and draped in our signature warm chocolate ganache.
+        </p>
+        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">540 Cal</span>
+          </div>
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">110 Min</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
+          <span>Contains:</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+        </div>
+      </div>
+      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+    </div>
+
+    <!-- Tiramisu -->
+    <div class="group text-center">
+      <div class="flex flex-col items-center">
+        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Tiramisu</h3>
+        <span class="price-gold font-label-caps font-bold text-xl mb-3">30.00 SAR</span>
+        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
+          Layers of espresso-soaked savoiardi and whipped mascarpone, dusted with premium Dutch cocoa.
+        </p>
+        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">420 Cal</span>
+          </div>
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">85 Min</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
+          <span>Contains:</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+        </div>
+      </div>
+      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+    </div>
+
+    <!-- Crème Brûlée -->
+    <div class="group text-center">
+      <div class="flex flex-col items-center">
+        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Crème Brûlée</h3>
+        <span class="price-gold font-label-caps font-bold text-xl mb-3">28.00 SAR</span>
+        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
+          Velvety vanilla custard finished with a shatter-thin caramelised sugar crust.
+        </p>
+        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">380 Cal</span>
+          </div>
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">75 Min</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
+          <span>Contains:</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
+        </div>
+      </div>
+      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+    </div>
+
+    <!-- Baked Italian Cheesecake -->
+    <div class="group text-center">
+      <div class="flex flex-col items-center">
+        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Baked Italian Cheesecake</h3>
+        <span class="price-gold font-label-caps font-bold text-xl mb-3">32.00 SAR</span>
+        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
+          Ricotta cheesecake with a light touch of citrus zest, served with a berry coulis.
+        </p>
+        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">460 Cal</span>
+          </div>
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">95 Min</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
+          <span>Contains:</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+        </div>
+      </div>
+      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+    </div>
+
+    <!-- Chocolate Fondant -->
+    <div class="group text-center">
+      <div class="flex flex-col items-center">
+        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Chocolate Fondant</h3>
+        <span class="price-gold font-label-caps font-bold text-xl mb-3">38.00 SAR</span>
+        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
+          Molten dark chocolate cake, warm and flowing, served with a scoop of Madagascar vanilla cream.
+        </p>
+        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">610 Cal</span>
+          </div>
+          <div class="text-center">
+            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
+              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
+            </span>
+            <span class="font-label-caps text-label-caps font-bold text-green">125 Min</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
+          <span>Contains:</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
+          <span class="opacity-40">·</span>
+          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ── Footer — green ground, gold accents ── -->
+<footer class="w-full bg-green text-white border-t-4 border-double border-gold mt-stack-lg relative overflow-hidden mb-16 md:mb-0">
+  <div class="absolute inset-0 halftone-overlay pointer-events-none opacity-20"></div>
+  <div class="relative z-10 max-w-full px-edge-margin py-stack-lg flex flex-col items-center text-center">
+    <span class="font-latin-display text-[14px] gold-accent tracking-[0.3em] uppercase mb-2">Chez Boubier 1930 — Genève</span>
+    <img src="Entrecote logo.png" alt="ENTRECÔTE Café de Paris" class="w-auto max-w-[160px] h-auto mx-auto"/>
+    <div class="w-16 rule-gold my-4"></div>
+    <p class="font-body-md text-body-md text-green-200 max-w-md">
+      One plate. One legacy. A secret kept for ninety-five years.
+    </p>
+    <div class="mt-stack-lg w-full max-w-3xl flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-label-caps text-[12px] text-gold-200">
+      <span>Al Faisaliah Tower</span>
+      <span class="text-gold">◆</span>
+      <span>Lumière Centre</span>
+      <span class="text-gold">◆</span>
+      <span>Laysen Valley</span>
+      <span class="text-gold">◆</span>
+      <span>AlUla</span>
+    </div>
+    <div class="mt-stack-md pt-stack-md w-full max-w-3xl border-t border-gold/40 font-caption text-[12px] text-green-200 leading-relaxed">
+      <p>All prices include 15% VAT. For your safety, please inform our service team of any food allergies before ordering.</p>
+    </div>
+  </div>
+  <div class="w-full h-6 halftone-overlay border-t border-gold/30 opacity-30"></div>
+</footer>
+
+<!-- ── Bottom tab bar (mobile only) ── -->
+<nav id="bottom-nav"
+     class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden bg-green border-t-2 border-double border-gold">
+  <a href="main_green_en.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
+    <span class="material-symbols-outlined text-[22px]">restaurant</span>
+    <span class="font-label-caps text-[10px]">Steaks</span>
+  </a>
+  <a href="dessert_green_en.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-gold">
+    <span class="material-symbols-outlined text-[22px]" style="font-variation-settings:'FILL' 1,'wght' 400">cake</span>
+    <span class="font-label-caps text-[10px] font-bold">Desserts</span>
+  </a>
+  <a href="#"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
+    <span class="material-symbols-outlined text-[22px]">local_cafe</span>
+    <span class="font-label-caps text-[10px]">Beverages</span>
+  </a>
+</nav>
+
+<script>
+  // Lucide icons
+  lucide.createIcons();
+
+  // Touch feedback
+  document.querySelectorAll('button, a').forEach(el => {
+    el.addEventListener('mousedown', () => el.classList.add('scale-95'));
+    el.addEventListener('mouseup',   () => el.classList.remove('scale-95'));
+    el.addEventListener('mouseleave',() => el.classList.remove('scale-95'));
+  });
+</script>
+</body></html>
