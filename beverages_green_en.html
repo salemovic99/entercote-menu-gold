@@ -3,7 +3,7 @@
 <html class="light" dir="ltr" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Desserts — ENTRECÔTE Café de Paris</title>
+<title>Beverages — ENTRECÔTE Café de Paris</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://unpkg.com/lucide@1.24.0/dist/umd/lucide.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -88,6 +88,15 @@
         background-clip: text;
         color: transparent;
     }
+    /* Second rule under the section title — the gold pairing beneath the green border */
+    .double-rule { position: relative; }
+    .double-rule::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: -6px;
+        height: 1px;
+        background-color: var(--gold);
+    }
 </style>
 <script id="tailwind-config">
     tailwind.config = {
@@ -152,6 +161,7 @@
                     "headline-lg-mobile": ["Cairo"],
                     "masthead": ["Cairo"],
                     "body-md": ["Cairo"],
+                    "item-title": ["Cairo"],
                     "latin-display": ["\"Playfair Display\""]
                 },
                 "fontSize": {
@@ -173,7 +183,7 @@
 <body class="white-page bg-background text-on-surface font-body-md selection:bg-green selection:text-white min-h-screen">
 
 <!-- ── Language switch (floating) — the label names the destination, not the current state ── -->
-<a href="dessert_green.html" lang="ar" dir="rtl" hreflang="ar"
+<a href="beverages_green.html" lang="ar" dir="rtl" hreflang="ar"
    aria-label="التبديل إلى العربية"
    class="fixed top-4 right-4 z-50 inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full
           bg-white text-green border border-gold
@@ -204,193 +214,150 @@
     <div class="flex items-center gap-4 font-label-caps text-[13px]">
       <a class="text-on-surface-variant hover:text-green transition-colors" href="main_green_en.html">Steaks</a>
       <span class="text-gold">|</span>
-      <a class="text-green font-bold border-b-2 border-gold" href="dessert_green_en.html">Desserts</a>
+      <a class="text-on-surface-variant hover:text-green transition-colors" href="dessert_green_en.html">Desserts</a>
       <span class="text-gold">|</span>
-      <a class="text-on-surface-variant hover:text-green transition-colors" href="beverages_green_en.html">Beverages</a>
+      <a class="text-green font-bold border-b-2 border-gold" href="beverages_green_en.html">Beverages</a>
     </div>
   </div>
 
 </header>
 
 <!-- ── Main content ── -->
-<main class="max-w-3xl mx-auto px-edge-margin py-stack-lg pb-28 md:pb-stack-lg">
+<main class="max-w-4xl mx-auto px-edge-margin py-stack-lg relative z-10 pb-28 md:pb-stack-lg">
 
   <!-- Section Header -->
-  <div class="text-center mb-12 md:mb-16">
-    <div class="inline-block border-y-2 border-green py-2 px-6 md:px-8">
-      <h2 class="green-accent font-headline-lg text-2xl md:text-headline-lg">DESSERTS — LES DOUCEURS</h2>
-    </div>
-    <p class="font-body-md text-body-md mt-4 text-on-surface-variant">A collection of classic Parisian desserts, made with precision and care.</p>
+  <div class="text-center mb-stack-lg">
+    <h2 class="green-accent font-item-title text-3xl md:text-headline-lg border-b-rule-weight border-green pb-double-rule-gap double-rule inline-block px-8 md:px-12">
+      BEVERAGES — LES BREUVAGES
+    </h2>
+    <p class="font-caption text-caption mt-6 text-on-surface-variant">A carefully curated selection to complete the Café de Paris experience.</p>
   </div>
 
-  <!-- Menu List -->
-  <div class="space-y-10 md:space-y-12">
+  <!-- Menu Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-12 gap-x-16 border-t border-green pt-10 md:pt-12">
 
-    <!-- Profiteroles -->
-    <div class="group text-center">
-      <div class="flex flex-col items-center">
-        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Profiteroles</h3>
-        <span class="price-gold font-label-caps font-bold text-xl mb-3">35.00 SAR</span>
-        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
-          Hand-crafted choux pastry filled with vanilla bean gelato and draped in our signature warm chocolate ganache.
-        </p>
-        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">540 Cal</span>
-          </div>
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">110 Min</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
-          <span>Contains:</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
-        </div>
+    <!-- Espresso -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Espresso</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">15.00 SAR</span>
       </div>
-      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">The pure essence of our dark roasted beans.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 65mg</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
     </div>
 
-    <!-- Tiramisu -->
-    <div class="group text-center">
-      <div class="flex flex-col items-center">
-        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Tiramisu</h3>
-        <span class="price-gold font-label-caps font-bold text-xl mb-3">30.00 SAR</span>
-        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
-          Layers of espresso-soaked savoiardi and whipped mascarpone, dusted with premium Dutch cocoa.
-        </p>
-        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">420 Cal</span>
-          </div>
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">85 Min</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
-          <span>Contains:</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
-        </div>
+    <!-- Double Espresso -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Double Espresso</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">20.00 SAR</span>
       </div>
-      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">Double the intensity, for the true connoisseur.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 130mg</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
     </div>
 
-    <!-- Crème Brûlée -->
-    <div class="group text-center">
-      <div class="flex flex-col items-center">
-        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Crème Brûlée</h3>
-        <span class="price-gold font-label-caps font-bold text-xl mb-3">28.00 SAR</span>
-        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
-          Velvety vanilla custard finished with a shatter-thin caramelised sugar crust.
-        </p>
-        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">380 Cal</span>
-          </div>
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">75 Min</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
-          <span>Contains:</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
-        </div>
+    <!-- Macchiato -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Macchiato</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">18.00 SAR</span>
       </div>
-      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">Espresso crowned with a cloud of milk foam.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 65mg</span>
+      </div>
+      <div class="flex justify-center items-center gap-1.5 mt-2 text-[11px] font-label-caps text-black/80">
+        <span>Contains:</span>
+        <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
     </div>
 
-    <!-- Baked Italian Cheesecake -->
-    <div class="group text-center">
-      <div class="flex flex-col items-center">
-        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Baked Italian Cheesecake</h3>
-        <span class="price-gold font-label-caps font-bold text-xl mb-3">32.00 SAR</span>
-        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
-          Ricotta cheesecake with a light touch of citrus zest, served with a berry coulis.
-        </p>
-        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">460 Cal</span>
-          </div>
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">95 Min</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
-          <span>Contains:</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
-        </div>
+    <!-- Cappuccino -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Cappuccino</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">22.00 SAR</span>
       </div>
-      <div class="w-16 h-px bg-gold mx-auto mt-10 md:mt-12 opacity-50"></div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">Equal parts espresso, steamed milk, and froth.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 80mg</span>
+      </div>
+      <div class="flex justify-center items-center gap-1.5 mt-2 text-[11px] font-label-caps text-black/80">
+        <span>Contains:</span>
+        <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
     </div>
 
-    <!-- Chocolate Fondant -->
-    <div class="group text-center">
-      <div class="flex flex-col items-center">
-        <h3 class="green-accent font-headline-md text-2xl md:text-headline-md mb-1">Chocolate Fondant</h3>
-        <span class="price-gold font-label-caps font-bold text-xl mb-3">38.00 SAR</span>
-        <p class="max-w-md font-body-md text-body-md text-on-surface-variant mb-4 text-[15px] md:text-body-md">
-          Molten dark chocolate cake, warm and flowing, served with a scoop of Madagascar vanilla cream.
-        </p>
-        <div class="grid grid-cols-2 gap-4 w-64 border-t border-dotted border-gold/60 pt-3 mx-auto">
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">local_fire_department</span>Calories
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">610 Cal</span>
-          </div>
-          <div class="text-center">
-            <span class="flex items-center justify-center gap-1 font-label-caps text-[11px] text-gold-700">
-              <span class="material-symbols-outlined text-[15px] text-gold">directions_walk</span>Walk to Burn
-            </span>
-            <span class="font-label-caps text-label-caps font-bold text-green">125 Min</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-1.5 mt-3 text-[11px] font-label-caps text-black/80">
-          <span>Contains:</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="wheat" class="w-3.5 h-3.5"></i>Gluten</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="egg" class="w-3.5 h-3.5"></i>Egg</span>
-          <span class="opacity-40">·</span>
-          <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
-        </div>
+    <!-- Americano -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Americano</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">18.00 SAR</span>
       </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">A long, smooth coffee with a deep character.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 95mg</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- Turkish Coffee -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Turkish Coffee</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">20.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">Finely ground, unfiltered, and aromatic.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 100mg</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- Café Latte -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Café Latte</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">22.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">Espresso blended with silky steamed milk.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 80mg</span>
+      </div>
+      <div class="flex justify-center items-center gap-1.5 mt-2 text-[11px] font-label-caps text-black/80">
+        <span>Contains:</span>
+        <span class="inline-flex items-center gap-1"><i data-lucide="milk" class="w-3.5 h-3.5"></i>Dairy</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- Tea Selection -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">Tea Selection</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">15.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">The finest whole-leaf infusions from around the world.</p>
+      <div class="flex justify-center items-center gap-4 text-xs font-label-caps text-gold-700">
+        <span class="inline-flex items-center gap-1.5"><i data-lucide="leaf" class="w-3.5 h-3.5 text-gold"></i>Caffeine: 30mg</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
     </div>
 
   </div>
@@ -432,14 +399,14 @@
     <span class="font-label-caps text-[10px]">Steaks</span>
   </a>
   <a href="dessert_green_en.html"
-     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-gold">
-    <span class="material-symbols-outlined text-[22px]" style="font-variation-settings:'FILL' 1,'wght' 400">cake</span>
-    <span class="font-label-caps text-[10px] font-bold">Desserts</span>
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
+    <span class="material-symbols-outlined text-[22px]">cake</span>
+    <span class="font-label-caps text-[10px]">Desserts</span>
   </a>
   <a href="beverages_green_en.html"
-     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
-    <span class="material-symbols-outlined text-[22px]">local_cafe</span>
-    <span class="font-label-caps text-[10px]">Beverages</span>
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-gold">
+    <span class="material-symbols-outlined text-[22px]" style="font-variation-settings:'FILL' 1,'wght' 400">local_cafe</span>
+    <span class="font-label-caps text-[10px] font-bold">Beverages</span>
   </a>
 </nav>
 
