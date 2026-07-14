@@ -107,17 +107,6 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* ── Collapsing header ── */
-    #site-header { transition: padding 0.3s ease; }
-    #header-meta-bar {
-        overflow: hidden; max-height: 40px; opacity: 1;
-        transition: max-height 0.35s ease, opacity 0.25s ease;
-    }
-    #header-logo { transition: max-width 0.35s ease; }
-    .header-scrolled { padding-top: 8px !important; }
-    .header-scrolled #header-meta-bar { max-height: 0; opacity: 0; }
-    .header-scrolled #header-logo { max-width: 160px !important; }
-
     /* ── Bottom nav safe-area ── */
     #bottom-nav { padding-bottom: env(safe-area-inset-bottom, 0px); }
 </style>
@@ -132,14 +121,14 @@
   <span class="text-blood-red font-bold">AR</span>
 </a>
 
-<!-- ── Header (sticky + collapsing) ── -->
-<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center sticky top-0 z-40 bg-background/90 backdrop-blur-sm">
+<!-- ── Header ── -->
+<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center bg-background">
 
 
   <!-- Logo -->
   <div class="py-3 w-full flex flex-col items-center border-b-4 border-double border-primary">
     <img id="header-logo" src="English version.svg" alt="ENTRECÔTE Café de Paris"
-         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto transition-all duration-300"/>
+         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto"/>
 
   </div>
 
@@ -359,11 +348,6 @@
 </nav>
 
 <script>
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('header-scrolled', window.scrollY > 72);
-  }, { passive: true });
-
   document.querySelectorAll('button, a').forEach(el => {
     el.addEventListener('mousedown', () => el.classList.add('scale-95'));
     el.addEventListener('mouseup',   () => el.classList.remove('scale-95'));
