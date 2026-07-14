@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>المشروبات — ENTRECÔTE Café de Paris</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        /* ---- PRIMARY PALETTE ---------------------------------------- */
+        /* The two hero colors. Green is dominant; gold is the accent. */
+        --green: #00594f;          /* Brunswick Green — PANTONE 129-16 C */
+        --gold:  #bb9d5a;          /* Satin Gold      — PANTONE 12-5 C   */
+        --white: #ffffff;
+        --black: #000000;          /* must stay PURE black, never mixed/overprinted */
+
+        /* ---- GREEN SCALE -------------------------------------------- */
+        --green-900: #001614;
+        --green-800: #002d28;
+        --green-700: #00413a;
+        --green-500: #337a72;
+        --green-400: #669b95;
+        --green-300: #99bdb9;
+        --green-200: #ccdedc;
+        --green-100: #e6efee;
+
+        /* ---- GOLD SCALE --------------------------------------------- */
+        --gold-900: #2f2717;
+        --gold-800: #5e4f2d;
+        --gold-700: #8c7644;
+        --gold-400: #c9b07b;
+        --gold-300: #d6c49c;
+        --gold-200: #e4d8bd;
+        --gold-100: #f1ebde;       /* warm "cream" ground — used as off-white */
+    }
+
+    /* ── White page ground ── */
+    .white-page {
+        background-color: var(--white);
+        background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    }
+
+    .halftone-overlay {
+        background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+        background-size: 3px 3px;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    /* ── Bottom tab bar safe-area ── */
+    #bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* ── Headings: solid Brunswick green (dominant) ── */
+    .green-accent { color: var(--green); }
+
+    /* ── Gold shimmer gradient — reserved for the accent moments ── */
+    .gold-accent {
+        background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-400) 25%, var(--gold) 50%, var(--gold-400) 75%, var(--gold-800) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    /* Gradient horizontal rule */
+    .rule-gold {
+        height: 2px;
+        border: 0;
+        background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold-200) 50%, var(--gold) 80%, transparent 100%);
+    }
+    /* Price tag */
+    .price-gold {
+        background: linear-gradient(135deg, var(--gold-800) 0%, var(--gold-700) 45%, var(--gold) 55%, var(--gold-800) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    /* Underline under the section title — .green-accent uses a solid color, so a
+       plain border would work, but the second rule keeps the gold pairing. */
+    .double-rule { position: relative; }
+    .double-rule::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: -6px;
+        height: 1px;
+        background-color: var(--gold);
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    /* Hero */
+                    "green": "#00594f",
+                    "green-900": "#001614",
+                    "green-800": "#002d28",
+                    "green-700": "#00413a",
+                    "green-500": "#337a72",
+                    "green-400": "#669b95",
+                    "green-300": "#99bdb9",
+                    "green-200": "#ccdedc",
+                    "green-100": "#e6efee",
+                    "gold": "#bb9d5a",
+                    "gold-900": "#2f2717",
+                    "gold-800": "#5e4f2d",
+                    "gold-700": "#8c7644",
+                    "gold-400": "#c9b07b",
+                    "gold-300": "#d6c49c",
+                    "gold-200": "#e4d8bd",
+                    "gold-100": "#f1ebde",
+
+                    /* Semantic roles — green dominant, gold accent */
+                    "primary": "#00594f",
+                    "secondary": "#bb9d5a",
+                    "background": "#ffffff",
+                    "surface": "#ffffff",
+                    "surface-container-low": "#e6efee",
+                    "on-background": "#001614",
+                    "on-surface": "#001614",
+                    "on-surface-variant": "#00413a",
+                    "on-primary": "#ffffff",
+                    "outline": "#669b95",
+                    "outline-variant": "#ccdedc"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "stack-sm": "8px",
+                    "edge-margin": "32px",
+                    "column-gap": "24px",
+                    "rule-weight": "1px",
+                    "stack-md": "16px",
+                    "double-rule-gap": "4px",
+                    "stack-lg": "40px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Cairo"],
+                    "headline-lg": ["Cairo"],
+                    "body-lg": ["Cairo"],
+                    "label-caps": ["Cairo"],
+                    "headline-sm": ["Cairo"],
+                    "caption": ["Cairo"],
+                    "headline-lg-mobile": ["Cairo"],
+                    "masthead": ["Cairo"],
+                    "body-md": ["Cairo"],
+                    "item-title": ["Cairo"],
+                    "latin-display": ["\"Playfair Display\""]
+                },
+                "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "64px", "fontWeight": "700"}],
+                    "body-lg": ["20px", {"lineHeight": "34px", "fontWeight": "400"}],
+                    "label-caps": ["14px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "caption": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "masthead": ["72px", {"lineHeight": "88px", "fontWeight": "900"}],
+                    "body-md": ["17px", {"lineHeight": "30px", "fontWeight": "400"}]
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="white-page bg-background text-on-surface font-body-md selection:bg-green selection:text-white min-h-screen">
+
+<!-- ── AR / EN language toggle (floating) ── -->
+<a href="BEVERAGES_gold.html"
+   class="fixed top-4 left-4 z-50 flex items-center gap-1 bg-surface border border-green/30 rounded-full px-3 py-1.5 shadow-sm font-label-caps text-[11px] uppercase text-on-surface-variant hover:text-green hover:border-green transition-colors">
+  <span>EN</span>
+  <span class="text-green/30 mx-0.5">|</span>
+  <span class="text-green font-bold">AR</span>
+</a>
+
+<!-- ── Header ── -->
+<header id="site-header" class="w-full px-edge-margin pt-stack-lg max-w-full flex flex-col items-center bg-background">
+
+  <!-- Logo -->
+  <div class="py-3 w-full flex flex-col items-center border-b-4 border-double border-green">
+    <img id="header-logo" src="English version.svg" alt="ENTRECÔTE Café de Paris"
+         class="w-auto max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg h-auto mx-auto"/>
+  </div>
+
+  <!-- Top nav -->
+  <nav class="w-full flex justify-center gap-column-gap py-3">
+    <a class="text-green font-bold border-b-2 border-gold font-label-caps text-label-caps active:scale-95 transition-all" href="#">القائمة</a>
+  </nav>
+
+  <div class="w-full rule-gold"></div>
+
+  <!-- Category ribbon — desktop only -->
+  <div class="hidden md:flex w-full justify-center border-b-4 border-double border-black py-2 bg-white">
+    <div class="flex items-center gap-4 font-label-caps text-[13px]">
+      <a class="text-on-surface-variant hover:text-green transition-colors" href="index_green.html"> الستيك</a>
+      <span class="text-gold">|</span>
+      <a class="text-on-surface-variant hover:text-green transition-colors" href="dessert_green.html">الحلويات</a>
+      <span class="text-gold">|</span>
+      <a class="text-green font-bold border-b-2 border-gold" href="beverages_green.html">المشروبات</a>
+    </div>
+  </div>
+
+</header>
+
+<!-- ── Main content ── -->
+<main class="max-w-4xl mx-auto px-edge-margin py-stack-lg relative z-10 pb-28 md:pb-stack-lg">
+
+  <!-- Section Header -->
+  <div class="text-center mb-stack-lg">
+    <h2 class="green-accent font-item-title text-3xl md:text-headline-lg border-b-rule-weight border-green pb-double-rule-gap double-rule inline-block px-8 md:px-12">
+      المشروبات — LES BREUVAGES
+    </h2>
+    <p class="font-caption text-caption mt-6 text-on-surface-variant">تشكيلة منتقاة بعناية لتكتمل بها تجربة كافيه دو باريس.</p>
+  </div>
+
+  <!-- Menu Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 md:gap-y-12 gap-x-16 border-t border-green pt-10 md:pt-12">
+
+    <!-- إسبريسو -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">إسبريسو</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">15.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">جوهر حبوب البن الداكنة المحمّصة في أنقى صوره.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 65 ملغ</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- إسبريسو مزدوج -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">إسبريسو مزدوج</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">20.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">ضعف الكثافة، لعشّاق القهوة الحقيقيين.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 130 ملغ</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- ماكياتو -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">ماكياتو</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">18.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">إسبريسو مُتوَّج بغيمةٍ من رغوة الحليب.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 65 ملغ</span>
+      </div>
+      <div class="flex justify-center items-center gap-1.5 mt-2 text-[11px] font-label-caps text-black/80">
+        <span>يحتوي على: ألبان</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- كابتشينو -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">كابتشينو</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">22.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">أجزاءٌ متساوية من الإسبريسو والحليب المبخَّر والرغوة.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 80 ملغ</span>
+      </div>
+      <div class="flex justify-center items-center gap-1.5 mt-2 text-[11px] font-label-caps text-black/80">
+        <span>يحتوي على: ألبان</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- أمريكانو -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">أمريكانو</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">18.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">قهوةٌ طويلة وناعمة بطابعٍ عميق.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 95 ملغ</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- قهوة تركية -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">قهوة تركية</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">20.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">مطحونة ناعماً، غير مُصفّاة، وعطرة.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 100 ملغ</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- كافيه لاتيه -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">كافيه لاتيه</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">22.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">إسبريسو ممزوج بحليبٍ مبخَّر حريريّ القوام.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 80 ملغ</span>
+      </div>
+      <div class="flex justify-center items-center gap-1.5 mt-2 text-[11px] font-label-caps text-black/80">
+        <span>يحتوي على: ألبان</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+    <!-- تشكيلة الشاي -->
+    <div class="text-center group">
+      <div class="flex justify-center items-baseline gap-4 mb-1">
+        <h3 class="green-accent font-label-caps text-headline-sm">تشكيلة الشاي</h3>
+        <span class="w-full border-b border-dotted border-gold/60 mb-1"></span>
+        <span class="price-gold font-label-caps font-bold text-base">15.00 SAR</span>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-2">أجود أنواع الشاي المنقوع بأوراقه الكاملة من مختلف أنحاء العالم.</p>
+      <div class="flex justify-center gap-4 text-xs font-label-caps text-gold-700">
+        <span>الكافيين: 30 ملغ</span>
+      </div>
+      <div class="w-12 h-px bg-gold mx-auto mt-6 opacity-50"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ── Footer — green ground, gold accents ── -->
+<footer class="w-full bg-green text-white border-t-4 border-double border-gold mt-stack-lg relative overflow-hidden mb-16 md:mb-0">
+  <div class="absolute inset-0 halftone-overlay pointer-events-none opacity-20"></div>
+  <div class="relative z-10 max-w-full px-edge-margin py-stack-lg flex flex-col items-center text-center">
+    <span class="font-latin-display text-[14px] gold-accent tracking-[0.3em] uppercase mb-2">Chez Boubier 1930 — Genève</span>
+    <img src="Entrecote logo.png" alt="ENTRECÔTE Café de Paris" class="w-auto max-w-[160px] h-auto mx-auto"/>
+    <div class="w-16 rule-gold my-4"></div>
+    <p class="font-body-md text-body-md text-green-200 max-w-md">
+      طبقٌ واحد. إرث واحدة. سرٌ محفوظ منذ خمسةٍ وتسعين عامًا
+    </p>
+    <div class="mt-stack-lg w-full max-w-3xl flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-label-caps text-[12px] text-gold-200">
+      <span>برج الفيصلية</span>
+      <span class="text-gold">◆</span>
+      <span>لومير سنتر</span>
+      <span class="text-gold">◆</span>
+      <span>ليسن فالي</span>
+      <span class="text-gold">◆</span>
+      <span>العلا</span>
+    </div>
+    <div class="mt-stack-md pt-stack-md w-full max-w-3xl border-t border-gold/40 font-caption text-[12px] text-green-200 leading-relaxed">
+      <p>جميع الأسعار تشمل ضريبة القيمة المضافة 15 ٪، حرصًا على سلامتكم نرجو إبلاغ فريق الخدمة بأي حساسية غذائية خاصة قبل الطلب.</p>
+    </div>
+  </div>
+  <div class="w-full h-6 halftone-overlay border-t border-gold/30 opacity-30"></div>
+</footer>
+
+<!-- ── Bottom tab bar (mobile only) ── -->
+<nav id="bottom-nav"
+     class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden bg-green border-t-2 border-double border-gold">
+  <a href="index_green.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
+    <span class="material-symbols-outlined text-[22px]">restaurant</span>
+    <span class="font-label-caps text-[10px]">الستيك</span>
+  </a>
+  <a href="dessert_green.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-green-200 hover:text-gold transition-colors">
+    <span class="material-symbols-outlined text-[22px]">cake</span>
+    <span class="font-label-caps text-[10px]">الحلويات</span>
+  </a>
+  <a href="beverages_green.html"
+     class="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-gold">
+    <span class="material-symbols-outlined text-[22px]" style="font-variation-settings:'FILL' 1,'wght' 400">local_cafe</span>
+    <span class="font-label-caps text-[10px] font-bold">المشروبات</span>
+  </a>
+</nav>
+
+<script>
+  // Touch feedback
+  document.querySelectorAll('button, a').forEach(el => {
+    el.addEventListener('mousedown', () => el.classList.add('scale-95'));
+    el.addEventListener('mouseup',   () => el.classList.remove('scale-95'));
+    el.addEventListener('mouseleave',() => el.classList.remove('scale-95'));
+  });
+</script>
+</body></html>
